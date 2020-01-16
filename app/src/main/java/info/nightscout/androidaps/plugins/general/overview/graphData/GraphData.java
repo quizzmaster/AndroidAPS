@@ -674,7 +674,7 @@ public class GraphData {
     public void addNowLine(long now) {
         LineGraphSeries<DataPoint> seriesNow;
         DataPoint[] nowPoints = new DataPoint[]{
-                new DataPoint(now, 0),
+                new DataPoint(now, minY),
                 new DataPoint(now, maxY)
         };
 
