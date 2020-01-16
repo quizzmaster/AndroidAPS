@@ -720,6 +720,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:drawableTop="@drawable/icon_danarprofile"
+                    android:gravity="bottom|center_horizontal"
                     android:paddingLeft="0dp"
                     android:paddingRight="0dp"
                     android:text="@string/danar_viewprofile" />
@@ -731,7 +733,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:drawableTop="@drawable/ic_historybrowser"
+                    android:gravity="bottom|center_horizontal"
                     android:paddingLeft="0dp"
+                    android:paddingTop="19dp"
                     android:paddingRight="0dp"
                     android:text="@string/danar_history" />
 
@@ -741,7 +746,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:drawableTop="@drawable/ic_stats"
+                    android:gravity="bottom|center_horizontal"
                     android:paddingLeft="0dp"
+                    android:paddingTop="19dp"
                     android:paddingRight="0dp"
                     android:text="@string/danar_stats" />
 
@@ -751,6 +759,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
+                    android:drawableTop="@drawable/icon_danar_useropt"
+                    android:gravity="bottom|center_horizontal"
                     android:paddingLeft="0dp"
                     android:paddingRight="0dp"
                     android:text="@string/danar_useroptions" />
