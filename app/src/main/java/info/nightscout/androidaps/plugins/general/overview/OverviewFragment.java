@@ -156,6 +156,7 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
     GraphView bgGraph;
     GraphView iobGraph;
     GraphView cobGraph;
+    GraphView devGraph;
     ImageButton chartButton;
 
     TextView iage;
@@ -279,7 +280,7 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
         bgGraph = (GraphView) view.findViewById(R.id.overview_bggraph);
         iobGraph = (GraphView) view.findViewById(R.id.overview_iobgraph);
         cobGraph = (GraphView) view.findViewById(R.id.overview_cobgraph);
-
+        devGraph = (GraphView) view.findViewById(R.id.overview_devgraph);
 
 
         treatmentButton = view.findViewById(R.id.overview_treatmentbutton);
@@ -329,18 +330,21 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
 
         bgGraph.getGridLabelRenderer().setGridColor(MainApp.gc(R.color.graphgrid));
         bgGraph.getGridLabelRenderer().reloadStyles();
+        bgGraph.getGridLabelRenderer().setLabelVerticalWidth(axisWidth);
         iobGraph.getGridLabelRenderer().setGridColor(MainApp.gc(R.color.graphgrid));
         iobGraph.getGridLabelRenderer().reloadStyles();
         iobGraph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
-        bgGraph.getGridLabelRenderer().setLabelVerticalWidth(axisWidth);
         iobGraph.getGridLabelRenderer().setLabelVerticalWidth(axisWidth);
         iobGraph.getGridLabelRenderer().setNumVerticalLabels(3);
-        cobGraph.getGridLabelRenderer().reloadStyles();
-        cobGraph.getGridLabelRenderer().reloadStyles();
         cobGraph.getGridLabelRenderer().setGridColor(MainApp.gc(R.color.graphgrid));
         cobGraph.getGridLabelRenderer().reloadStyles();
         cobGraph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
         cobGraph.getGridLabelRenderer().setNumVerticalLabels(3);
+        devGraph.getGridLabelRenderer().setGridColor(MainApp.gc(R.color.graphgrid));
+        devGraph.getGridLabelRenderer().reloadStyles();
+        devGraph.getGridLabelRenderer().setHorizontalLabelsVisible(false);
+        devGraph.getGridLabelRenderer().setLabelVerticalWidth(axisWidth);
+        devGraph.getGridLabelRenderer().setNumVerticalLabels(3);
 
         rangeToDisplay = SP.getInt(R.string.key_rangetodisplay, 6);
 
@@ -1522,10 +1526,11 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
 
             // ------------------ 2nd graph
             if (L.isEnabled(L.OVERVIEW))
-                Profiler.log(log, from + " - 2nd graph - START", updateGUIStart);
+                Profiler.log(log, from + " - other graphs - START", updateGUIStart);
 
-            final GraphData secondGraphData = new GraphData(iobGraph, IobCobCalculatorPlugin.getPlugin());
-            final GraphData thirdGraphData = new GraphData(cobGraph, IobCobCalculatorPlugin.getPlugin());
+            final GraphData iobGraphData = new GraphData(iobGraph, IobCobCalculatorPlugin.getPlugin());
+            final GraphData cobGraphData = new GraphData(cobGraph, IobCobCalculatorPlugin.getPlugin());
+            final GraphData devGraphData = new GraphData(devGraph, IobCobCalculatorPlugin.getPlugin());
 
             boolean useIobForScale = true;
             boolean useCobForScale = true;
@@ -1535,39 +1540,52 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
             boolean useDSForScale = false;
             boolean useIAForScale = false;
 
-            if (SP.getBoolean("showdeviations", false)) {
-                useDevForScale = false;
-            } else if (SP.getBoolean("showratios", false)) {
-                useRatioForScale = false;
-            } else if (SP.getBoolean("showactivitysecondary", false)) {
-                useIAForScale = false;
-            } else if (SP.getBoolean("showdevslope", false)) {
-                useDSForScale = false;
-            }
+            boolean anyDev = false;
 
-            secondGraphData.addIob(fromTime, now, useIobForScale, 1d, SP.getBoolean("showprediction", false));
-            thirdGraphData.addCob(fromTime, now, useCobForScale, useCobForScale ? 1d : 0.5d);
+            if (SP.getBoolean("showdeviations", false)) {
+                useDevForScale = true;
+                anyDev = true;
+            } else if (SP.getBoolean("showratios", false)) {
+                useRatioForScale = true;
+                anyDev = true;
+            } else if (SP.getBoolean("showactivitysecondary", false)) {
+                useIAForScale = true;
+                anyDev = true;
+            } else if (SP.getBoolean("showdevslope", false)) {
+                useDSForScale = true;
+                anyDev = true;
+            }
+            final boolean showDevGraph = anyDev;
+
+            iobGraphData.addIob(fromTime, now, useIobForScale, useCobForScale ? 1d : 0.5d, SP.getBoolean("showprediction", false));
+            cobGraphData.addCob(fromTime, now, useCobForScale, useCobForScale ? 1d : 0.5d);
 
             if (SP.getBoolean("showdeviations", false)){
-                secondGraphData.addDeviations(fromTime, now, useDevForScale, 1d);
+                devGraphData.addDeviations(fromTime, now, useDevForScale, 1d);
             }
 
             if (SP.getBoolean("showratios", false))
-                secondGraphData.addRatio(fromTime, now, useRatioForScale, 1d);
+                devGraphData.addRatio(fromTime, now, useRatioForScale, 1d);
             if (SP.getBoolean("showactivitysecondary", true))
-                secondGraphData.addActivity(fromTime, endTime, useIAForScale, 0.8d);
+                devGraphData.addActivity(fromTime, endTime, useIAForScale, 0.8d);
             if (SP.getBoolean("showdevslope", false) && MainApp.devBranch)
-                secondGraphData.addDeviationSlope(fromTime, now, useDSForScale, 1d);
+                devGraphData.addDeviationSlope(fromTime, now, useDSForScale, 1d);
 
+            // dev graph
             // **** NOW line ****
             // set manual x bounds to have nice steps
-            secondGraphData.formatAxis(fromTime, endTime);
-            secondGraphData.addNowLine(now);
+            devGraphData.formatAxis(fromTime, endTime);
+            devGraphData.addNowLine(now);
 
-            // ------------------ 3nd graph
+            // ------------------ COB graph
 
-            thirdGraphData.formatAxis(fromTime, endTime);
-            thirdGraphData.addNowLine(now);
+            cobGraphData.formatAxis(fromTime, endTime);
+            cobGraphData.addNowLine(now);
+
+            // ------------------ IOB graph
+
+            iobGraphData.formatAxis(fromTime, endTime);
+            iobGraphData.addNowLine(now);
 
             // do GUI update
             FragmentActivity activity = getActivity();
@@ -1575,11 +1593,17 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
                 activity.runOnUiThread(() -> {
                     iobGraph.setVisibility(View.VISIBLE);
                     cobGraph.setVisibility(View.VISIBLE);
+                    if (showDevGraph) {
+                        devGraph.setVisibility(View.VISIBLE);
+                    } else {
+                        devGraph.setVisibility(View.GONE);
+                    }
 
                     // finally enforce drawing of graphs
                     graphData.performUpdate();
-                    secondGraphData.performUpdate();
-                    thirdGraphData.performUpdate();
+                    iobGraphData.performUpdate();
+                    cobGraphData.performUpdate();
+                    devGraphData.performUpdate();
                     if (L.isEnabled(L.OVERVIEW))
                         Profiler.log(log, from + " - onDataChanged", updateGUIStart);
                 });
