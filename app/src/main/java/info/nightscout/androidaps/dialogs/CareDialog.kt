@@ -66,11 +66,11 @@ class CareDialog : DialogFragmentWithDate() {
         super.onViewCreated(view, savedInstanceState)
 
         actions_care_icon.setImageResource(when (options) {
-            EventType.BGCHECK        -> R.drawable.icon_cp_bgcheck
-            EventType.SENSOR_INSERT  -> R.drawable.icon_cp_cgm_insert
-            EventType.BATTERY_CHANGE -> R.drawable.icon_cp_pump_battery
-            EventType.NOTE           -> R.drawable.icon_cp_note
-            EventType.EXERCISE       -> R.drawable.icon_cp_exercise
+            EventType.BGCHECK        -> R.drawable.ic_cp_blooddrop_35
+            EventType.SENSOR_INSERT  -> R.drawable.ic_sensor
+            EventType.BATTERY_CHANGE -> R.drawable.ic_battery_35
+            EventType.NOTE           -> R.drawable.ic_note
+            EventType.EXERCISE       -> R.drawable.ic_exercise
         })
         actions_care_title.text = MainApp.gs(when (options) {
             EventType.BGCHECK        -> R.string.careportal_bgcheck
