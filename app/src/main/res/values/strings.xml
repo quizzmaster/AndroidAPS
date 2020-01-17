@@ -626,6 +626,8 @@
     <string name="statuslights_bat_warning">Threshold warning battery level [%]</string>
     <string name="key_statuslights_bat_critical" translatable="false">key_statuslights_bat_critical</string>
     <string name="statuslights_bat_critical">Threshold critical battery level [%]</string>
+    <string name="key_colored_icons" translatable="false">key_colored_icons</string>
+    <string name="colored_icons">Show colored icons</string>
     <string name="iob">IOB</string>
     <string name="cob">COB</string>
     <string name="virtualpump_firmware_label">Firmware</string>

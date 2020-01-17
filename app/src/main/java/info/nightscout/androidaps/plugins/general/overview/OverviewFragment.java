@@ -307,6 +307,30 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
         if (cgmButton != null)
             cgmButton.setOnClickListener(this);
 
+
+        if (SP.getBoolean(R.string.key_colored_icons, false)) {
+            if (wizardButton != null) {
+                Drawable drawable = wizardButton.getCompoundDrawables()[1];
+                drawable.setColorFilter(new PorterDuffColorFilter(0xff67e86a, PorterDuff.Mode.MULTIPLY));
+            }
+            if (insulinButton != null) {
+                Drawable drawable = insulinButton.getCompoundDrawables()[1];
+                drawable.setColorFilter(new PorterDuffColorFilter(0xff1ba1e2, PorterDuff.Mode.MULTIPLY));
+            }
+            if (carbsButton != null) {
+                Drawable drawable = carbsButton.getCompoundDrawables()[1];
+                drawable.setColorFilter(new PorterDuffColorFilter(0xfff0a30a, PorterDuff.Mode.MULTIPLY));
+            }
+            if (calibrationButton != null) {
+                Drawable drawable = calibrationButton.getCompoundDrawables()[1];
+                drawable.setColorFilter(new PorterDuffColorFilter(0xffe93057, PorterDuff.Mode.MULTIPLY));
+            }
+            if (cgmButton != null) {
+                Drawable drawable = cgmButton.getCompoundDrawables()[1];
+                drawable.setColorFilter(new PorterDuffColorFilter(0xffe93057, PorterDuff.Mode.MULTIPLY));
+            }
+        }
+
         acceptTempLayout = view.findViewById(R.id.overview_accepttemplayout);
 
         notificationsView = view.findViewById(R.id.overview_notifications);
@@ -1247,17 +1271,16 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
             if (cobInfo.displayCob != null) {
                 cobText = DecimalFormatter.to0Decimal(cobInfo.displayCob);
                 Drawable drawable = cobView.getBackground();
-                drawable.setColorFilter(new PorterDuffColorFilter(0xfff0a30a, PorterDuff.Mode.SRC_IN));
-                cobView.setTextColor(MainApp.gc(R.color.white));
+                if (cobInfo.displayCob == 0) {
+                    drawable.setColorFilter(new PorterDuffColorFilter(0xffEBEBEA, PorterDuff.Mode.SRC_IN));
+                    cobView.setTextColor(MainApp.gc(R.color.black));
+                } else {
+                    drawable.setColorFilter(new PorterDuffColorFilter(0xfff0a30a, PorterDuff.Mode.SRC_IN));
+                    cobView.setTextColor(MainApp.gc(R.color.white));
+                }
 
                     if (cobInfo.futureCarbs > 0)
                     cobText += "/" + DecimalFormatter.to0Decimal(cobInfo.futureCarbs) ;
-            }
-            if (cobInfo.displayCob == 0) {
-                cobText = DecimalFormatter.to0Decimal(cobInfo.displayCob);
-                Drawable drawable = cobView.getBackground();
-                drawable.setColorFilter(new PorterDuffColorFilter(0xffEBEBEA, PorterDuff.Mode.SRC_IN));
-                cobView.setTextColor(MainApp.gc(R.color.black));
             }
 
             cobView.setText(cobText);

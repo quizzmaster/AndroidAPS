@@ -1,6 +1,10 @@
 package info.nightscout.androidaps.plugins.pump.danaR
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.os.Handler
 import android.view.LayoutInflater
@@ -25,11 +29,7 @@ import info.nightscout.androidaps.plugins.pump.danaR.events.EventDanaRNewStatus
 import info.nightscout.androidaps.plugins.pump.danaRKorean.DanaRKoreanPlugin
 import info.nightscout.androidaps.plugins.treatments.TreatmentsPlugin
 import info.nightscout.androidaps.queue.events.EventQueueChanged
-import info.nightscout.androidaps.utils.DateUtil
-import info.nightscout.androidaps.utils.FabricPrivacy
-import info.nightscout.androidaps.utils.SetWarnColor
-import info.nightscout.androidaps.utils.T
-import info.nightscout.androidaps.utils.plusAssign
+import info.nightscout.androidaps.utils.*
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.danar_fragment.*
@@ -58,6 +58,14 @@ class DanaRFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         dana_pumpstatus.setBackgroundColor(MainApp.gc(R.color.colorInitializingBorder))
+
+        if (SP.getBoolean(R.string.key_colored_icons, false)) {
+            var drawable: Drawable
+            drawable = danar_history.getCompoundDrawables()[1]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#67dfe8"), PorterDuff.Mode.MULTIPLY))
+            drawable = danar_stats.getCompoundDrawables()[1]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#f0a30a"), PorterDuff.Mode.MULTIPLY))
+        }
 
         danar_history.setOnClickListener { startActivity(Intent(context, DanaRHistoryActivity::class.java)) }
         danar_viewprofile.setOnClickListener {

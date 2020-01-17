@@ -2,6 +2,10 @@ package info.nightscout.androidaps.plugins.general.actions
 
 
 import android.content.Intent
+import android.graphics.Color
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
+import android.graphics.drawable.Drawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -50,6 +54,36 @@ class ActionsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        if (SP.getBoolean(R.string.key_colored_icons, false)) {
+            var drawable: Drawable
+            drawable = actions_temptarget.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#67e86a"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_extendedbolus.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#f0a30a"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_extendedbolus_cancel.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#f0a30a"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_settempbasal.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#d08cff"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_canceltempbasal.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#d08cff"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_fill.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#67dfe8"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_historybrowser.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#67dfe8"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_tddstats.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#f0a30a"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_bgcheck.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#e93057"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_cgmsensorinsert.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#67dfe8"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_pumpbatterychange.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#67e86a"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_note.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#f0a30a"), PorterDuff.Mode.MULTIPLY))
+            drawable = actions_exercise.getCompoundDrawables()[0]
+            drawable.setColorFilter(PorterDuffColorFilter(Color.parseColor("#67dfe8"), PorterDuff.Mode.MULTIPLY))
+        }
 
         actions_profileswitch.setOnClickListener {
             fragmentManager?.let { ProfileSwitchDialog().show(it, "Actions") }
