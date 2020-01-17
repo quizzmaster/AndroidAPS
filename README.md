@@ -1,3 +1,8 @@
+# Skin Variant built upon the dev branch of the original [AndroidAPS](https://github.com/MilosKozak/AndroidAPS.git)
+
+![standard skin](/screenshots/std-skin.jpg)
+![sphere skin](/screenshots/sphere-skin.jpg)
+
 # AndroidAPS
 
 * Check the wiki: http://wiki.androidaps.org
