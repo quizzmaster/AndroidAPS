@@ -286,7 +286,8 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
         treatmentButton = view.findViewById(R.id.overview_treatmentbutton);
         treatmentButton.setOnClickListener(this);
         wizardButton = view.findViewById(R.id.overview_wizardbutton);
-        wizardButton.setOnClickListener(this);
+        if (wizardButton != null)
+            wizardButton.setOnClickListener(this);
         insulinButton = view.findViewById(R.id.overview_insulinbutton);
         if (insulinButton != null)
             insulinButton.setOnClickListener(this);
