@@ -110,10 +110,9 @@ android {
         multiDexEnabled true
         versionCode 1500
         version "2.6-dev"
-        skinversion "0.1"
         buildConfigField "String", "VERSION", '"' + version + '"'
         buildConfigField "String", "BUILDVERSION", '"' + generateGitBuild() + '-' + generateDate() + '"'
-        buildConfigField "String", "SKINVERSION", '"' + skinversion + '"'
+        buildConfigField "String", "SKINVERSION", '"0.1"'
         buildConfigField "String", "REMOTE", '"' + generateGitRemote() + '"'
         buildConfigField "String", "HEAD", '"' + generateGitBuild() + '"'
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
