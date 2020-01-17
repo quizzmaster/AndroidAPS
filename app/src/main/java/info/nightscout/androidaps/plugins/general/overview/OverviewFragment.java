@@ -1254,8 +1254,8 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
         }
         if (iobView != null) {
             Drawable drawable = iobView.getBackground();
-            drawable.setColorFilter(new PorterDuffColorFilter(0xff1ba1e2, PorterDuff.Mode.SRC_IN));
-            iobView.setTextColor(MainApp.gc(R.color.white));
+            drawable.setColorFilter(new PorterDuffColorFilter(0x00000000, PorterDuff.Mode.SRC_ATOP));
+            iobView.setTextColor(MainApp.gc(R.color.black));
 
         } if ((bolusIob.iob + basalIob.basaliob) <= 0.00){
             Drawable drawable = iobView.getBackground();
@@ -1275,8 +1275,8 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
                     drawable.setColorFilter(new PorterDuffColorFilter(0xffEBEBEA, PorterDuff.Mode.SRC_IN));
                     cobView.setTextColor(MainApp.gc(R.color.black));
                 } else {
-                    drawable.setColorFilter(new PorterDuffColorFilter(0xfff0a30a, PorterDuff.Mode.SRC_IN));
-                    cobView.setTextColor(MainApp.gc(R.color.white));
+                    drawable.setColorFilter(new PorterDuffColorFilter(0x00000000, PorterDuff.Mode.SRC_ATOP));
+                    cobView.setTextColor(MainApp.gc(R.color.black));
                 }
 
                     if (cobInfo.futureCarbs > 0)
@@ -1322,8 +1322,8 @@ public class OverviewFragment extends Fragment implements View.OnClickListener, 
 
         if (activeTemp != null) {
             Drawable drawable = baseBasalView.getBackground();
-            drawable.setColorFilter(new PorterDuffColorFilter(0xff149baf, PorterDuff.Mode.SRC_IN));
-            baseBasalView.setTextColor(MainApp.gc(R.color.white));
+            drawable.setColorFilter(new PorterDuffColorFilter(0x00000000, PorterDuff.Mode.SRC_ATOP));
+            baseBasalView.setTextColor(MainApp.gc(R.color.black));
         } else {
             Drawable drawable = baseBasalView.getBackground();
             drawable.setColorFilter(new PorterDuffColorFilter(0xffEBEBEA, PorterDuff.Mode.SRC_IN));
