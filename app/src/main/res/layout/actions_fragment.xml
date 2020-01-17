@@ -16,6 +16,23 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="15dp"
+            android:layout_marginBottom="5dp"
+            android:paddingStart="15dp"
+            android:paddingEnd="15dp"
+            android:text="@string/statistics" />
+
+        <include
+            android:id="@+id/careportal_stats"
+            layout="@layout/careportal_stats_fragment"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:layout_marginBottom="2dp" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
             android:paddingStart="15dp"
             android:paddingEnd="15dp"
             android:text="@string/actions" />
@@ -31,12 +48,13 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_zahnrad_32"
+
                 android:paddingLeft="10dp"
                 android:paddingRight="10dp"
                 android:text="@string/careportal_profileswitch"
-
                 app:layout_column="0"
                 app:layout_columnWeight="1"
                 app:layout_gravity="fill"
@@ -47,6 +65,7 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_tt"
                 android:paddingLeft="10dp"
@@ -62,6 +81,7 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_tempbasal"
                 android:paddingLeft="10dp"
@@ -93,6 +113,7 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_extended_bolus"
                 android:paddingLeft="10dp"
@@ -139,6 +160,7 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_cp_blooddrop_35"
                 android:paddingLeft="10dp"
@@ -154,6 +176,7 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_katheter_35"
                 android:paddingLeft="10dp"
@@ -169,6 +192,7 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_sensor"
                 android:paddingLeft="10dp"
@@ -184,6 +208,7 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_battery_35"
                 android:paddingLeft="10dp"
@@ -199,6 +224,7 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_note"
                 android:paddingLeft="10dp"
@@ -214,6 +240,7 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="fill_parent"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_exercise"
                 android:paddingLeft="10dp"
@@ -225,12 +252,6 @@
                 app:layout_row="4" />
 
         </androidx.gridlayout.widget.GridLayout>
-
-        <include
-            android:id="@+id/careportal_stats"
-            layout="@layout/careportal_stats_fragment"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
 
         <TextView
             android:layout_width="match_parent"
@@ -250,6 +271,7 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_historybrowser"
                 android:paddingLeft="10dp"
@@ -265,6 +287,7 @@
                 style="@style/ButtonSmallFontStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_margin="2dp"
                 android:background="@drawable/white_trans_bg"
                 android:drawableLeft="@drawable/ic_stats"
                 android:paddingLeft="10dp"
