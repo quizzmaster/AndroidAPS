@@ -116,6 +116,7 @@ open class OpenAPSSMBPlugin @Inject constructor(
         .setDefault(),
     aapsLogger, rh
 ), APS, PluginConstraints {
+    private val enableSMB_EvenOn_OddOff_always; get() = preferences.get(BooleanKey.ApsAutoIsfSmbOnEvenTarget) // for profile target
 
     override fun onStart() {
         super.onStart()
@@ -455,6 +456,7 @@ open class OpenAPSSMBPlugin @Inject constructor(
             out_units = if (profileFunction.getUnits() == GlucoseUnit.MMOL) "mmol/L" else "mg/dl",
             variable_sens = if (dynIsfMode) dynIsfResult.variableSensitivity ?: 0.0 else 0.0,
             insulinDivisor = dynIsfResult.insulinDivisor,
+            enableSMB_EvenOn_OddOff_always = enableSMB_EvenOn_OddOff_always,
             TDD = dynIsfResult.tdd ?: 0.0
         )
         val microBolusAllowed = constraintsChecker.isSMBModeEnabled(ConstraintObject(tempBasalFallback.not(), aapsLogger)).also { inputConstraints.copyReasons(it) }.value()
@@ -619,6 +621,7 @@ open class OpenAPSSMBPlugin @Inject constructor(
                 addPreference(
                     AdaptiveDoublePreference(ctx = context, doubleKey = DoubleKey.ApsMaxCurrentBasalMultiplier, dialogMessage = R.string.openapsama_current_basal_safety_multiplier_summary, title = R.string.openapsama_current_basal_safety_multiplier)
                 )
+                addPreference(AdaptiveSwitchPreference(ctx = context, booleanKey = BooleanKey.ApsAutoIsfSmbOnEvenTarget, summary = R.string.enableSMB_EvenOn_OddOff_always_summary, title = R.string.enableSMB_EvenOn_OddOff_always))
             })
         }
     }
