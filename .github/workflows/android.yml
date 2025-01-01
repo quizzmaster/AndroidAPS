@@ -27,13 +27,13 @@ jobs:
       run: chmod +x gradlew
 
     # Run Tests Build
-    #- name: Run gradle tests
+    - name: Run gradle tests
     #  run: ./gradlew testFullReleaseUnitTest
-    #  run: ./gradlew tasks
+      run: ./gradlew tasks
       
     # Run Build Project
-    - name: Build with Gradle
-      run: ./gradlew build || true
+    # - name: Build with Gradle
+    #   run: ./gradlew build || true
 
     # Upload Artifact Build
     - name: Upload Logfiles
