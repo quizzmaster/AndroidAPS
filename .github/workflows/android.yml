@@ -33,7 +33,7 @@ jobs:
 
     # Run Build Project
     - name: Build with Gradle
-      run: ./gradlew build || true
+      run: ./gradlew app:assembleFullRelease || true
 
     # Upload Artifact Build
     - name: Upload Logfiles
