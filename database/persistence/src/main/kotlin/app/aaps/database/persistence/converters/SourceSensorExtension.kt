@@ -34,6 +34,7 @@ fun GlucoseValue.SourceSensor.fromDb(): SourceSensor =
         GlucoseValue.SourceSensor.LIBRE_1_GLIMP          -> SourceSensor.LIBRE_1_GLIMP
         GlucoseValue.SourceSensor.LIBRE_2_NATIVE         -> SourceSensor.LIBRE_2_NATIVE
         GlucoseValue.SourceSensor.LIBRE_3                -> SourceSensor.LIBRE_3
+        GlucoseValue.SourceSensor.LIBRE_3_FOLLOW         -> SourceSensor.LIBRE_3_FOLLOW
         GlucoseValue.SourceSensor.POCTECH_NATIVE         -> SourceSensor.POCTECH_NATIVE
         GlucoseValue.SourceSensor.GLUNOVO_NATIVE         -> SourceSensor.GLUNOVO_NATIVE
         GlucoseValue.SourceSensor.INTELLIGO_NATIVE       -> SourceSensor.INTELLIGO_NATIVE
