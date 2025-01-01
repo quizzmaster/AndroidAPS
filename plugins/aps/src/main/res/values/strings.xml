@@ -34,6 +34,13 @@
     <string name="description_auto_isf">Most recent algorithm for advanced users with AutoISF extensions</string>
     <string name="openapsama_bolus_snooze_dia_divisor">Bolus snooze dia divisor</string>
 
+    <string name="enableSMB_EvenOn_OddOff">Enable alternative activation of SMB depending on TempTarget</string>
+    <string name="key_enableSMB_EvenOn_OddOff" translatable="false">Enable alternative activation of SMB</string>
+    <string name="enableSMB_EvenOn_OddOff_summary">\nenabled if ...\nTempTarget(mmol/L) has even decimal\nor TempTarget(mg/dL) is even number\n\ndisabled otherwise</string>
+    <string name="enableSMB_EvenOn_OddOff_always">Enable alternative activation of SMB depending on profile target</string>
+    <string name="key_enableSMB_EvenOn_OddOff_always" translatable="false">Enable alternative activation of SMB always</string>
+    <string name="enableSMB_EvenOn_OddOff_always_summary">\nenabled if no TempTarget set and ...\nprofile target(mmol/L) has even decimal\nor profile target(mg/dL) is even number\n\ndisabled otherwise</string>
+
     <string name="openapsma_run">Run now</string>
     <string name="openapsma_last_run_label">Last run</string>
     <string name="openapsma_input_parameters_label">Input parameters</string>
