@@ -5,7 +5,7 @@ on:
   #  branches: [ "master" ]
   # pull_request:
   #  branches: [ "master" ]
-    
+
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -27,13 +27,12 @@ jobs:
       run: chmod +x gradlew
 
     # Run Tests Build
-    # - name: Run gradle tests
+    #- name: Run gradle tests
     #  run: ./gradlew testFullReleaseUnitTest
-    #  run: ./gradlew tasks --all
-      
+    #  run: ./gradlew tasks
+
     # Run Build Project
     - name: Build with Gradle
-      # run: ./gradlew build :app:assembleFullRelease || true
       run: ./gradlew build || true
 
     # Upload Artifact Build
@@ -41,4 +40,4 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
          name: 'Build Logfiles'
-             path: app/build/**
+         path: app/build/**
