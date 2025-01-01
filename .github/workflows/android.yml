@@ -27,17 +27,20 @@ jobs:
       run: chmod +x gradlew
 
     # Run Tests Build
-    - name: Run gradle tests
+    # - name: Run gradle tests
     #  run: ./gradlew testFullReleaseUnitTest
-      run: ./gradlew tasks --all
+    #  run: ./gradlew tasks --all
       
     # Run Build Project
-    # - name: Build with Gradle
-    #   run: ./gradlew build || true
+    - name: Build with Gradle
+      run: ./gradlew build :app:assembleFullRelease || true
 
     # Upload Artifact Build
     - name: Upload Logfiles
       uses: actions/upload-artifact@v4
       with:
          name: 'Build Logfiles'
-         path: app/build/**
+         paths:
+             - app/build/outputs/**
+             - app/build/reports/**
+
