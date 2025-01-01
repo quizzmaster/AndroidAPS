@@ -22,10 +22,16 @@ class SgvComplication : BaseComplicationProviderService() {
 
     override fun buildComplicationData(dataType: Int, raw: RawDisplayData, complicationPendingIntent: PendingIntent): ComplicationData? {
         var complicationData: ComplicationData? = null
+        val slopeArrow: String
+        if (raw.singleBg[0].slopeArrow == "\u2198") {
+          slopeArrow = "\u2199"
+        } else {
+          slopeArrow = raw.singleBg[0].slopeArrow
+        }
         when (dataType) {
             ComplicationData.TYPE_SHORT_TEXT -> {
                 val builder = ComplicationData.Builder(ComplicationData.TYPE_SHORT_TEXT)
-                    .setShortText(ComplicationText.plainText(raw.singleBg[0].sgvString + raw.singleBg[0].slopeArrow + "\uFE0E"))
+                    .setShortText(ComplicationText.plainText(raw.singleBg[0].sgvString + slopeArrow + "\uFE0E"))
                     .setShortTitle(ComplicationText.plainText(displayFormat.shortTrend(raw, 0)))
                     .setTapAction(complicationPendingIntent)
                 complicationData = builder.build()
