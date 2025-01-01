@@ -31,6 +31,7 @@ enum class SourceSensor(val text: String) {
     LIBRE_2("Libre2"),
     LIBRE_2_NATIVE("Libre2 Native"),
     LIBRE_3("Libre3"),
+    LIBRE_3_FOLLOW("NSFollower"),
     POCTECH_NATIVE("Poctech"),
     GLUNOVO_NATIVE("Glunovo"),
     INTELLIGO_NATIVE("Intelligo"),
