@@ -64,16 +64,19 @@ fun gitAvailable(): Boolean {
     } catch (_: Exception) {
         return false
     }
+    return stringBuilder.toString().isNotEmpty()
 }
 
 fun allCommitted(): Boolean {
     try {
-        val processBuilder = ProcessBuilder("git", "status", "-s")
-        val output = File.createTempFile("git-comited", "")
-        processBuilder.redirectOutput(output)
-        val process = processBuilder.start()
-        process.waitFor()
-        return output.readText().replace(Regex("""(?m)^\s*(M|A|D|\?\?)\s*.*?\.idea\/codeStyles\/.*?\s*$"""), "")
+        val stdout = ByteArrayOutputStream()
+        exec {
+            commandLine("git", "status", "-s")
+            standardOutput = stdout
+        }
+        // ignore all changes done in .idea/codeStyles
+        val cleanedList: String = stdout.toString()
+            .replace(Regex("""(?m)^\s*(M|A|D|\?\?)\s*.*?\.idea\/codeStyles\/.*?\s*$"""), "")
             // ignore all files added to project dir but not staged/known to GIT
             .replace(Regex("""(?m)^\s*(\?\?)\s*.*?\s*$"""), "").trim().isEmpty()
     } catch (_: Exception) {
@@ -139,7 +142,7 @@ android {
 
     useLibrary("org.apache.http.legacy")
 
-    //Deleting it causes a binding error
+    // Deleting it causes a binding error
     buildFeatures {
         dataBinding = true
         buildConfig = true
@@ -204,7 +207,6 @@ dependencies {
     androidTestImplementation(libs.androidx.test.rules)
     androidTestImplementation(libs.org.skyscreamer.jsonassert)
 
-
     kspAndroidTest(libs.com.google.dagger.android.processor)
 
     /* Dagger2 - We are going to use dagger.android which includes
@@ -224,10 +226,11 @@ println("isMaster: ${isMaster()}")
 println("gitAvailable: ${gitAvailable()}")
 println("allCommitted: ${allCommitted()}")
 println("-------------------")
-if (!gitAvailable()) {
-    throw GradleException("GIT system is not available. On Windows try to run Android Studio as an Administrator. Check if GIT is installed and Studio have permissions to use it")
+if (isMaster() && !gitAvailable()) {
+    throw GradleException(
+      "GIT system is not available. On Windows try to run Android Studio as an Administrator. Check if GIT is installed and Studio have permissions to use it"
+    )
 }
 if (isMaster() && !allCommitted()) {
     throw GradleException("There are uncommitted changes. Clone sources again as described in wiki and do not allow gradle update")
 }
-
