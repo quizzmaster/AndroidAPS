@@ -250,8 +250,8 @@ class DetermineBasalAdapterSMBJS(private val scriptReader: ScriptReader, private
         this.profile.put("current_basal", basalRate)
         this.profile.put("temptargetSet", tempTargetSet)
         this.profile.put("autosens_max", preferences.get(DoubleKey.AutosensMax))
-        this.profile.put("enableSMB_EvenOn_OddOff", sp.getBoolean(R.string.key_enableSMB_EvenOn_OddOff, false))
-        this.profile.put("enableSMB_EvenOn_OddOff_always", sp.getBoolean(R.string.key_enableSMB_EvenOn_OddOff_always, false))
+        this.profile.put("enableSMB_EvenOn_OddOff", smbEnabled && preferences.get(BooleanKey.EnableSMBEvenOnOddOff))
+        this.profile.put("enableSMB_EvenOn_OddOff_always", smbEnabled && preferences.get(BooleanKey.EnableSMBEvenOnOddOffAlways))
         if (profileFunction.getUnits() == GlucoseUnit.MMOL) {
             this.profile.put("out_units", "mmol/L")
         }
