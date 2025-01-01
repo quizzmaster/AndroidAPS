@@ -42,5 +42,5 @@ jobs:
       with:
          name: 'Build Logfiles'
          path:
-             app/build/**
-             wear/build/**
+             app/**
+             wear/**
