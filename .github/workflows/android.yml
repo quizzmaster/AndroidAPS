@@ -41,5 +41,6 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
          name: 'Build Logfiles'
-         path: app/build/**
-         path: wear/build/**
+         path:
+             app/build/**
+             wear/build/**
