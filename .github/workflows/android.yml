@@ -30,7 +30,15 @@ jobs:
     - name: Build with Gradle
     #  run: ./gradlew app:assembleFullRelease
       run: ./gradlew wear:assembleFullRelease
-
+    
+    # Setup build tool version variable
+    - name: Setup build tool version variable
+      shell: bash
+      run: |
+        BUILD_TOOL_VERSION=$(ls /usr/local/lib/android/sdk/build-tools/ | tail -n 1)
+        echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
+        echo Last build tool version is: $BUILD_TOOL_VERSION
+    
     # Sign APK File
     - name: Sign APK
       uses: r0adkll/sign-android-release@v1
@@ -42,7 +50,8 @@ jobs:
         keyPassword: ${{ secrets.KEY_PASSWORD }}
       env:
         # override default build-tools version (29.0.3) -- optional
-        BUILD_TOOLS_VERSION: "35.0.2"
+        # BUILD_TOOLS_VERSION: "35.0.2"
+        BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
       
     # Upload Artifact Build
     - name: Upload Logfiles
