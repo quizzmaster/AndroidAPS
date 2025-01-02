@@ -26,15 +26,20 @@ jobs:
     - name: Grant execute permission for gradlew
       run: chmod +x gradlew
 
-    # Run Tests Build
-    #- name: Run gradle tests
-    #  run: ./gradlew testFullReleaseUnitTest
-    #  run: ./gradlew tasks
-
     # Run Build Project
     - name: Build with Gradle
-    #  run: ./gradlew app:assembleFullRelease || true
+    #  run: ./gradlew app:assembleFullRelease
       run: ./gradlew wear:assembleFullRelease
+
+    # Sign APK File
+    - name: Sign APK
+    - uses: r0adkll/sign-android-release@v1
+    with:
+      releaseDirectory: wear/build/outputs/apk/release
+      signingKeyBase64: ${{ secrets.SIGNING_KEY }}
+      alias: ${{ secrets.KEY_ALIAS }}
+      keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
+      keyPassword: ${{ secrets.KEY_PASSWORD }}
 
     # Upload Artifact Build
     - name: Upload Logfiles
