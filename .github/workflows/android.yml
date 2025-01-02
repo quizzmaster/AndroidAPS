@@ -32,8 +32,8 @@ jobs:
       run: ./gradlew wear:assembleFullRelease
 
     # Sign APK File
-    #- uses: r0adkll/sign-android-release@v1
-    #- name: Sign APK
+    - name: Sign APK
+      uses: r0adkll/sign-android-release@v1
     #with:
     #  releaseDirectory: wear/build/outputs/apk/release
     #  signingKeyBase64: ${{ secrets.SIGNING_KEY }}
