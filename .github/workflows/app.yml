@@ -41,6 +41,7 @@ jobs:
     # Sign APK File
     - name: Sign APK
       uses: r0adkll/sign-android-release@v1
+      id: sign_app
       with:
         releaseDirectory: app/build/outputs/apk/full/release
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
@@ -57,5 +58,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
          name: 'Build Logfiles'
-         path: |
-             app/build/outputs/apk/full/release/app-full-release-unsigned-signed.apk
+         path: ${{steps.sign_app.outputs.signedReleaseFile}}
+         # path: app/build/outputs/apk/full/release/app-full-release-unsigned-signed.apk
