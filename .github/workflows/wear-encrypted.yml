@@ -1,4 +1,4 @@
-name: Build wear version
+name: Build encrypted wear version
 
 on:
   # push:
