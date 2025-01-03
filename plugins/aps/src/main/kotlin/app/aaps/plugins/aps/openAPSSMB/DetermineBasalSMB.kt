@@ -1,5 +1,6 @@
 package app.aaps.plugins.aps.openAPSSMB
 
+import app.aaps.core.data.configuration.Constants
 import app.aaps.core.interfaces.aps.APSResult
 import app.aaps.core.interfaces.aps.AutosensResult
 import app.aaps.core.interfaces.aps.CurrentTemp
@@ -7,10 +8,12 @@ import app.aaps.core.interfaces.aps.GlucoseStatus
 import app.aaps.core.interfaces.aps.IobTotal
 import app.aaps.core.interfaces.aps.MealData
 import app.aaps.core.interfaces.aps.OapsProfile
+import app.aaps.core.interfaces.aps.OapsProfileAutoIsf
 import app.aaps.core.interfaces.aps.Predictions
 import app.aaps.core.interfaces.aps.RT
 import app.aaps.core.interfaces.profile.ProfileUtil
 import app.aaps.core.interfaces.utils.fabric.FabricPrivacy
+import app.aaps.core.keys.IntKey
 import java.text.DecimalFormat
 import java.time.Instant
 import java.time.ZoneId
@@ -62,7 +65,34 @@ class DetermineBasalSMB @Inject constructor(
     //if (profile.out_units === "mmol/L") round(value / 18, 1).toFixed(1);
     //else Math.round(value);
 
+    fun convert_bg_to_units(value: Double, profile: OapsProfile): Double =
+        if (profile.out_units == "mmol/L") value * Constants.MGDL_TO_MMOLL else value
+
     fun enable_smb(profile: OapsProfile, microBolusAllowed: Boolean, meal_data: MealData, target_bg: Double): Boolean {
+        if (profile.temptargetSet && profile.enableSMB_EvenOn_OddOff || profile.min_bg == profile.max_bg && profile.enableSMB_EvenOn_OddOff_always) {
+            var target = convert_bg_to_units(profile.target_bg, profile)
+            // val msgType: String
+            val evenTarget: Boolean
+            val msgUnits: String
+            val msgTail: String
+            if (profile.out_units == "mmol/L") {
+                evenTarget = round(target * 10.0, 0).toInt() % 2 == 0
+                target = round(target, 1)
+                msgUnits = "has"
+                msgTail = "decimal"
+            } else {
+                evenTarget = round(target, 0).toInt() % 2 == 0
+                target = round(target, 0)
+                msgUnits = "is"
+                msgTail = "number"
+            }
+            val msgEven: String = if (evenTarget) "even" else "odd"
+
+            if (!evenTarget) {
+                consoleError.add("SMB disabled due to current target $target $msgUnits $msgEven $msgTail")
+                return false
+            }
+        }
         // disable SMB when a high temptarget is set
         if (!microBolusAllowed) {
             consoleError.add("SMB disabled (!microBolusAllowed)")
