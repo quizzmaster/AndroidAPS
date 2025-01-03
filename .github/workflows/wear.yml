@@ -43,6 +43,7 @@ jobs:
       uses: r0adkll/sign-android-release@v1
       with:
         releaseDirectory: wear/build/outputs/apk/full/release
+        SIGNED_RELEASE_FILE: wear/build/outputs/apk/full/release/wear-full-release-signed.apk
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
         alias: ${{ secrets.KEY_ALIAS }}
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -51,7 +52,6 @@ jobs:
         # override default build-tools version (29.0.3) -- optional
         # BUILD_TOOLS_VERSION: "35.0.2"
         BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
-        SIGNED_RELEASE_FILE: wear/build/outputs/apk/full/release/wear-full-release-signed.apk
       
     # Upload Artifact Build
     - name: Upload Logfiles
