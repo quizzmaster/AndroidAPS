@@ -28,7 +28,7 @@ enum class SourceSensor(val text: String) {
     LIBRE_1_BUBBLE("Bubble"),
     LIBRE_1_ATOM("Bubble"),
     LIBRE_1_GLIMP("Glimp"),
-    LIBRE_2_NATIVE("Libre2"),
+    LIBRE_2_NATIVE("Libre2 Native"),
     LIBRE_3("Libre3"),
     LIBRE_3_FOLLOW("Nightscout Follow"),
     POCTECH_NATIVE("Poctech"),
