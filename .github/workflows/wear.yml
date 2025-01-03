@@ -41,9 +41,9 @@ jobs:
     # Sign APK File
     - name: Sign APK
       uses: r0adkll/sign-android-release@v1
+      id: sign_app
       with:
         releaseDirectory: wear/build/outputs/apk/full/release
-        SIGNED_RELEASE_FILE: wear/build/outputs/apk/full/release/wear-full-release-signed.apk
         signingKeyBase64: ${{ secrets.SIGNING_KEY }}
         alias: ${{ secrets.KEY_ALIAS }}
         keyStorePassword: ${{ secrets.KEY_STORE_PASSWORD }}
@@ -58,4 +58,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
          name: 'Wear Build Logfiles'
-         path: wear/build/outputs/apk/full/release/wear-full-release-signed.apk
+         path: ${{steps.sign_app.outputs.signedReleaseFile}}
+         # path: wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk
