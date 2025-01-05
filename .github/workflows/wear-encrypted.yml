@@ -70,3 +70,4 @@ jobs:
          name: 'Wear-Build-Encrypted-${{ github.run_number }}'
          path: ${{steps.sign_wear.outputs.signedReleaseFile}}.gpg
          # wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk.gpg
+         retention-days: 1
