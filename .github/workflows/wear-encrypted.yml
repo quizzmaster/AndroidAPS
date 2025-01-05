@@ -68,8 +68,5 @@ jobs:
       uses: actions/upload-artifact@v4
       with:
          name: 'Wear-Build-Encrypted-${{ github.run_number }}'
-         path: |
-             wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk
-             wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk.gpg
-         # path: ${{steps.sign_wear.outputs.signedReleaseFile}}
-         # path: wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk
+         path: ${{steps.sign_wear.outputs.signedReleaseFile}}.gpg
+         # wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk.gpg
