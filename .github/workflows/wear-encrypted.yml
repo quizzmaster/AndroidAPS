@@ -56,14 +56,13 @@ jobs:
     # Encrypt signed APK File
     - name: Encrypt signed APK File
       shell: bash
-      run: |
-        env:
+      env:
           GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+      run: |
         gpg --passphrase "$GPG_PASSPHRASE" -c --no-symkey-cache --cipher-algo AES256 --batch wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk
         pwd
         ls wear/build/outputs/apk/full/release/
-        # env:
-        #  GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
+        
     # Upload Artifact Build
     - name: Upload Logfiles
       uses: actions/upload-artifact@v4
