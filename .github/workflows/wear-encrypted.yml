@@ -70,6 +70,6 @@ jobs:
          name: 'Wear Build Logfiles'
          path: |
              wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk
-             wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk.*
+             wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk.gpg
          # path: ${{steps.sign_wear.outputs.signedReleaseFile}}
          # path: wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk
