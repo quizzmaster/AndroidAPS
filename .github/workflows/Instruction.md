@@ -44,6 +44,6 @@ These instructions allow you to build AndroidAPS with a browser.
 4. Delete the ZIP file on Github: click at the trash behind the GPG encrypted ZIP file.
    This saves space at your Github account and protects your data.
 5. Uncompress the ZIP file. It contains the GPG encrypted file, named app-full-release-unsigned-signed.apk.gpg
-6. Encrypt the file app.apk.gpg:\
-   gpg --encrypt --passphrase "value of GPG_PASSPHRASE" app-full-release-unsigned-signed.apk.gpg
+6. Decrypt the file app.apk.gpg:\
+   gpg --decrypt --passphrase "value of GPG_PASSPHRASE" app-full-release-unsigned-signed.apk.gpg
 8. Rename your app file if necessary.
