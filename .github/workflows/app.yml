@@ -57,6 +57,7 @@ jobs:
     - name: Upload Logfiles
       uses: actions/upload-artifact@v4
       with:
-         name: 'App Build Logfiles'
+         name: 'App-Build-${{ github.run_number }}'
          path: ${{steps.sign_app.outputs.signedReleaseFile}}
          # path: app/build/outputs/apk/full/release/app-full-release-unsigned-signed.apk
+         retention-days: 1
