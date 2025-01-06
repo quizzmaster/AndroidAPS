@@ -8,7 +8,7 @@ These instructions allow you to build AndroidAPS with a browser.
 
 ## Prepare your existing or new Android Studio signing keystore
 
-1. Base64 encoding of the keystore file: certutil keystore.jks SIGNING_KEY.txt
+1. Base64 encoding of the keystore file (on a Windows PC): certutil keystore.jks SIGNING_KEY.txt
 
 ## Setup Github secrets for the keystore and the GPG encryption
 
