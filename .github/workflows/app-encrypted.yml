@@ -71,4 +71,4 @@ jobs:
          path: |
             ${{steps.sign_app.outputs.signedReleaseFile}}.gpg
             # app/build/outputs/apk/full/release/app-full-release-unsigned-signed.apk
-            
+         retention-days: 1
