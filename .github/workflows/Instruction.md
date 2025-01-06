@@ -15,7 +15,7 @@ These instructions allow you to build AndroidAPS with a browser.
 
 ## Setup Github secrets for the keystore and the GPG encryption
 
-1. In the forked AndroidAPS repo, go to Settings -> Secrets and variables -> Actions.
+1. In the forked AndroidAPS repository, go to Settings -> Secrets and variables -> Actions.
 1. For each of the following secrets, tap on "New repository secret", then add the name of the secret, along with the value you defined during keystore creation time. As value for the secret SIGNING_KEY use the text out of the file SIGNING_KEY.txt, which is stored between the two lines --BEGIN CERTIFICATE-- and --END CERTIFICATE--.  
     * `KEY_STORE_PASSWORD`
     * `KEY_ALIAS`
@@ -23,3 +23,13 @@ These instructions allow you to build AndroidAPS with a browser.
     * `SIGNING_KEY`
 1. For the GPG encryption of the build AndroidAPS app, define a passphrase, which is stored in the secret GPG_PASSPHRASE
     * `GPG_PASSPHRASE`
+  
+    * 
+
+## Build AndroidAPS
+1. In the forked AndroidAPS repository, go to Actions.
+1. If not already done, activate workflow on your repository.
+3. On the left side, select the workflow "Build encrypted app version".
+4. On the right side, klick on the drop down menue "Run workflow" and select "Branch: master" which is the default value.
+5. Then klick on "Run workflow".
+
