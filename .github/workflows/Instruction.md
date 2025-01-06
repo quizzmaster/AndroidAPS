@@ -1,4 +1,4 @@
-# Using GitHub Actions
+# Using GitHub Actions for browser build
 
 These instructions allow you to build AndroidAPS with a browser.
 
