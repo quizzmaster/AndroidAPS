@@ -57,6 +57,7 @@ jobs:
     - name: Upload Logfiles
       uses: actions/upload-artifact@v4
       with:
-         name: 'Wear Build Logfiles'
+         name: 'Wear-Build-${{ github.run_number }}'
          path: ${{steps.sign_wear.outputs.signedReleaseFile}}
          # path: wear/build/outputs/apk/full/release/wear-full-release-unsigned-signed.apk
+         retention-days: 1
