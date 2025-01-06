@@ -10,9 +10,9 @@ These instructions allow you to build AndroidAPS with a browser.
 
 ## Prepare your existing or new Android Studio signing keystore
 
-1. Base64 encoding of the keystore file (on a Windows PC):
+1. Base64 encoding of the keystore file (on a Windows PC):\
    certutil keystore.jks SIGNING_KEY.txt
-2. Base64 encoding of the keystore file (on other plattforms with openssl):
+2. Base64 encoding of the keystore file (on other plattforms with openssl):\
    openssl base64 < keystore.jks | tr -d '\n' | tee SIGNING_KEY.txt
 
 
@@ -37,12 +37,13 @@ These instructions allow you to build AndroidAPS with a browser.
 
 
 ## Download the build, signed and encrypted app
-1. When the workflow (build, sign, encryption) is completed, click on "Build encrypted app version" at the right side.
+1. When the workflow (build, sign, encryption) is completed, click on "Build encrypted app version" at the right side.\
    There should be a green checkmark in front of this text when the workflow was sucessfull.
 2. Scroll down to the block "Annotations".
 3. There, click on the download link behind the GPG encrypted ZIP file.
 4. Delete the ZIP file on Github: click at the trash behind the GPG encrypted ZIP file.
    This saves space at your Github account and protects your data.
 5. Uncompress the ZIP file. It contains the GPG encrypted file, named app-full-release-unsigned-signed.apk.gpg
-6. Encrypt the file app.apk.gpg: gpg --encrypt --passphrase "value of GPG_PASSPHRASE" app-full-release-unsigned-signed.apk.gpg
-7. Rename your app file if necessary.
+6. Encrypt the file app.apk.gpg:\
+   gpg --encrypt --passphrase "value of GPG_PASSPHRASE" app-full-release-unsigned-signed.apk.gpg
+8. Rename your app file if necessary.
