@@ -29,16 +29,16 @@ These instructions allow you to build AndroidAPS with a browser.
 1. On your forked AndroidAPS repository, go to Actions.
 2. If not already done, activate workflow on your repository.
 3. On the left side, select the workflow "Build encrypted app version".
-4. On the right side, klick on the drop down menue "Run workflow" and select "Branch: master" which is the default value.
-5. Then klick on "Run workflow".
+4. On the right side, click on the drop down menue "Run workflow" and select "Branch: master" which is the default value.
+5. Then click on "Run workflow".
 
 
 ## Download the build, signed and encrypted app
-1. When the workflow (build, sign, encryption) is completed, klick on "Build encrypted app version" at the right side.
+1. When the workflow (build, sign, encryption) is completed, click on "Build encrypted app version" at the right side.
    There should be a green checkmark in front of this text when the workflow was sucessfull.
 2. Scroll down to the block "Annotations".
-3. There, klick on the download link behind the GPG encrypted ZIP file.
-4. Delete the ZIP file on Github: klick at the trash behind the GPG encrypted ZIP file.
+3. There, click on the download link behind the GPG encrypted ZIP file.
+4. Delete the ZIP file on Github: click at the trash behind the GPG encrypted ZIP file.
    This saves space at your Github account and protects your data.
 5. Uncompress the ZIP file. It contains the GPG encrypted file, named app-full-release-unsigned-signed.apk.gpg
 6. Encrypt the file app.apk.gpg: gpg --encrypt --passphrase "value of GPG_PASSPHRASE" app-full-release-unsigned-signed.apk.gpg
