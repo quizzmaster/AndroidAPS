@@ -37,7 +37,7 @@ jobs:
         BUILD_TOOL_VERSION=$(ls /usr/local/lib/android/sdk/build-tools/ | tail -n 1)
         echo "BUILD_TOOL_VERSION=$BUILD_TOOL_VERSION" >> $GITHUB_ENV
         echo Last build tool version is: $BUILD_TOOL_VERSION
-    
+        
     # Sign APK File
     - name: Sign APK
       uses: r0adkll/sign-android-release@v1
@@ -56,8 +56,10 @@ jobs:
     # Encrypt signed APK File
     - name: Encrypt signed APK File
       shell: bash
+      env:
+          GPG_PASSPHRASE: ${{ secrets.GPG_PASSPHRASE }}
       run: |
-        gpg --passphrase testgpg -c --no-symkey-cache --cipher-algo AES256 --batch app/build/outputs/apk/full/release/app-full-release-unsigned-signed.apk
+        gpg --passphrase "$GPG_PASSPHRASE" -c --no-symkey-cache --cipher-algo AES256 --batch app/build/outputs/apk/full/release/app-full-release-unsigned-signed.apk
         pwd
         ls app/build/outputs/apk/full/release/
       
@@ -65,9 +67,8 @@ jobs:
     - name: Upload Logfiles
       uses: actions/upload-artifact@v4
       with:
-         name: 'App Build Logfiles'
+         name: 'App-Build-Encrypted-${{ github.run_number }}'
          path: |
-             app/build/outputs/apk/full/release/app-full-release-unsigned-signed.apk
-             app/build/outputs/apk/full/release/app-full-release-unsigned-signed.apk.*
-         # path: ${{steps.sign_app.outputs.signedReleaseFile}}
-         # path: app/build/outputs/apk/full/release/app-full-release-unsigned-signed.apk
+            ${{steps.sign_app.outputs.signedReleaseFile}}.gpg
+            # app/build/outputs/apk/full/release/app-full-release-unsigned-signed.apk
+            
