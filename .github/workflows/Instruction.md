@@ -37,7 +37,9 @@ These instructions allow you to build AndroidAPS with a browser.
 1. When the build is completed, klick on "Build encrypted app version" at the right side.
    There should be a green checkmark in front of this text after build is completec and was sucessfull.
 2. Scroll down to the block "Annotations".
-3. There klick on the download link behind the GPG encrypted ZIP file
-4. Uncompress the ZIP file. It contains the GPG encrypted file, named app-full-release-unsigned-signed.apk.gpg
-5. Encrypt the file app.apk.gpg: gpg --encrypt --passphrase "value of GPG_PASSPHRASE" app-full-release-unsigned-signed.apk.gpg
-6. Rename your app file if necessary.
+3. There klick on the download link behind the GPG encrypted ZIP file.
+4. Delete the ZIP file on Github: klick at the trash behind the GPG encrypted ZIP file.
+   This saves space at your Github account and protects your data.
+5. Uncompress the ZIP file. It contains the GPG encrypted file, named app-full-release-unsigned-signed.apk.gpg
+6. Encrypt the file app.apk.gpg: gpg --encrypt --passphrase "value of GPG_PASSPHRASE" app-full-release-unsigned-signed.apk.gpg
+7. Rename your app file if necessary.
