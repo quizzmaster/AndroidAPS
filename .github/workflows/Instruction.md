@@ -18,4 +18,5 @@ These instructions allow you to build AndroidAPS with a browser.
     * `KEY_ALIAS`
     * `KEY_PASSWORD`
     * `SIGNING_KEY`
+1. For the GPG encryption of the build AndroidAPS app, define a passphrase, which is stored in the secret GPG_PASSPHRASE
     * `GPG_PASSPHRASE`
