@@ -37,7 +37,7 @@ These instructions allow you to build AndroidAPS with a browser.
 1. When the workflow (build, sign, encryption) is completed, klick on "Build encrypted app version" at the right side.
    There should be a green checkmark in front of this text when the workflow was sucessfull.
 2. Scroll down to the block "Annotations".
-3. There klick on the download link behind the GPG encrypted ZIP file.
+3. There, klick on the download link behind the GPG encrypted ZIP file.
 4. Delete the ZIP file on Github: klick at the trash behind the GPG encrypted ZIP file.
    This saves space at your Github account and protects your data.
 5. Uncompress the ZIP file. It contains the GPG encrypted file, named app-full-release-unsigned-signed.apk.gpg
