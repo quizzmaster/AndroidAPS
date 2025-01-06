@@ -52,7 +52,7 @@ jobs:
         # override default build-tools version (29.0.3) -- optional
         # BUILD_TOOLS_VERSION: "35.0.2"
         BUILD_TOOLS_VERSION: ${{ env.BUILD_TOOL_VERSION }}
-    
+
     # Encrypt signed APK File
     - name: Encrypt signed APK File
       shell: bash
