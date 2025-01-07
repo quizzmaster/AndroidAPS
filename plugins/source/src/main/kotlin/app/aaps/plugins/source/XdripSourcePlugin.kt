@@ -47,7 +47,7 @@ class XdripSourcePlugin @Inject constructor(
     aapsLogger, rh
 ), BgSource, XDripSource {
 
-    private var advancedFiltering = false
+    private var advancedFiltering = true
     override var sensorBatteryLevel = -1
 
     override fun advancedFilteringSupported(): Boolean = advancedFiltering
@@ -65,6 +65,7 @@ class XdripSourcePlugin @Inject constructor(
             SourceSensor.LIBRE_2,
             SourceSensor.LIBRE_2_NATIVE,
             SourceSensor.LIBRE_3,
+            SourceSensor.LIBRE_3_FOLLOW,
         ).any { it == glucoseValue.sourceSensor }
     }
 
