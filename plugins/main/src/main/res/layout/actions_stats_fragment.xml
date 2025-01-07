@@ -207,7 +207,7 @@
             android:paddingStart="4dp"
             android:paddingEnd="0dp"
             android:textSize="14sp"
-            tools:text="..." />
+            tools:text="20U" />
 
     </TableRow>
 
@@ -282,7 +282,7 @@
             android:paddingStart="4dp"
             android:paddingEnd="0dp"
             android:textSize="14sp"
-            tools:text="70%" />
+            tools:text="100%" />
 
     </TableRow>
 
