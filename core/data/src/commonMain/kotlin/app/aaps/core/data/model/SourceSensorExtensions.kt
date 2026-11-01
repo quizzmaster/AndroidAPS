@@ -22,6 +22,7 @@ private val ADVANCED_FILTERING_SENSORS = setOf(
     SourceSensor.DEXCOM_G7,
     SourceSensor.LIBRE_2,
     SourceSensor.LIBRE_3,
+    SourceSensor.LIBRE_3_FOLLOW,
     SourceSensor.SYAI_TAG,
     SourceSensor.RANDOM,
 )

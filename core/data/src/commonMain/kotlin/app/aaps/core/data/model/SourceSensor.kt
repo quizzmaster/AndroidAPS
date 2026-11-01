@@ -22,6 +22,7 @@ enum class SourceSensor(val text: String, val aliases: Set<String> = emptySet())
     ),
     LIBRE_2("Libre2", setOf("Libre2 Native")),
     LIBRE_3("Libre3"),
+    LIBRE_3_FOLLOW("Nightscout Follow"),
     MEDTRUM_A6("Medtrum A6"),
     MEDTRUM_UNKNOWN("Medtrum", setOf("Medtrum Native")),
     MM_600_SERIES("MM600Series"),
