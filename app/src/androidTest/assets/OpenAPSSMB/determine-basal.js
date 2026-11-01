@@ -53,6 +53,18 @@ function enable_smb(
     meal_data,
     target_bg
 ) {
+    if (profile.temptargetSet && profile.enableSMB_EvenOn_OddOff || profile.min_bg==profile.max_bg && profile.enableSMB_EvenOn_OddOff_always)  {
+        var target = convert_bg(profile.target_bg, profile);
+        if (profile['out_units'] == "mmol/L") {
+            evenTarget = ( round(target*10, 0) %2 == 0 );
+        } else {
+            evenTarget = ( target %2 == 0 );
+        }
+        if ( !evenTarget ) {
+            console.error("SMB disabled due to odd target");
+            return false;
+        }
+    }
     // disable SMB when a high temptarget is set
     if (! microBolusAllowed) {
         console.error("SMB disabled (!microBolusAllowed)");
