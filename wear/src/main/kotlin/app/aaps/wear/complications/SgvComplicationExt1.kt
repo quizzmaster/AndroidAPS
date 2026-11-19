@@ -33,7 +33,13 @@ class SgvComplicationExt1 : ModernBaseComplicationProviderService() {
 
         return when (type) {
             ComplicationType.SHORT_TEXT      -> {
-                val shortText = bgData1.sgvString + bgData1.slopeArrow + "\uFE0E"
+		val slopeArrow: String
+		if (bgData1.slopeArrow == "\u2198") {
+		    slopeArrow = "\u2199"
+		} else {
+		    slopeArrow = bgData1.slopeArrow
+		}
+                val shortText = bgData1.sgvString + slopeArrow + "\uFE0E"
 
                 val shortTitle = TimeDifferenceComplicationText.Builder(
                     style = TimeDifferenceStyle.STOPWATCH,

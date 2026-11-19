@@ -46,7 +46,13 @@ open class SgvComplication : ModernBaseComplicationProviderService() {
         bgData: EventData.SingleBg,
         pendingIntent: PendingIntent
     ): ShortTextComplicationData {
-        val mainText = bgData.sgvString + bgData.slopeArrow
+	val slopeArrow: String
+        if (bgData.slopeArrow == "\u2198") {
+          slopeArrow = "\u2199"
+        } else {
+          slopeArrow = bgData.slopeArrow
+        }
+        val mainText = bgData.sgvString + slopeArrow
 
         // Title: auto-updating time + delta (e.g., "5m +0.1")
         val titleText = buildCountUpText(bgData.timeStamp, "^1 ${bgData.delta}")
