@@ -201,6 +201,14 @@ enum class BooleanKey(
         defaultedBySM = true,
         sync = SyncSpec(SyncChannel.Cold, SyncDirection.Bidirectional)
     ),
+    ApsAutoIsfSmbOnEvenTempTarget(
+        "Enable alternative activation of SMB always with TT",
+        false,
+        KeysStrings.pref_title_aps_smb_on_even_temp_target,
+        KeysStrings.pref_summary_aps_smb_on_even_temp_target,
+        defaultedBySM = true,
+        sync = SyncSpec(SyncChannel.Cold, SyncDirection.Bidirectional)
+    ),
 
     MaintenanceEnableFabric("enable_fabric2", true, KeysStrings.pref_title_maintenance_enable_fabric, defaultedBySM = true, hideParentScreenIfHidden = true),
 

@@ -84,7 +84,33 @@ class DetermineBasalSMB(
     //if (profile.out_units === "mmol/L") round(value / 18, 1).toFixed(1);
     //else Math.round(value);
 
+    fun convert_bg_to_units(value: Double, profile: OapsProfile): Double =
+        if (profile.out_units == "mmol/L") value * Constants.MGDL_TO_MMOLL else value
+
     fun enable_smb(profile: OapsProfile, microBolusAllowed: Boolean, meal_data: MealData, target_bg: Double): Boolean {
+	if (profile.temptargetSet && profile.enableSMB_EvenOn_OddOff ||
+            profile.min_bg == profile.max_bg && !profile.temptargetSet && profile.enableSMB_EvenOn_OddOff_always) {
+            var target = convert_bg_to_units(profile.target_bg, profile)
+            val evenTarget: Boolean
+            val msgUnits: String
+            val msgTail: String
+            if (profile.out_units == "mmol/L") {
+                evenTarget = round(target * 10.0, 0).toInt() % 2 == 0
+                target = round(target, 1)
+                msgUnits = "has"
+                msgTail = "decimal"
+            } else {
+                evenTarget = round(target, 0).toInt() % 2 == 0
+                target = round(target, 0)
+                msgUnits = "is"
+                msgTail = "number"
+            }
+            if (!evenTarget) {
+                consoleError.add("SMB disabled due to current target $target $msgUnits odd $msgTail")
+                return false
+            }
+        }
+
         // disable SMB when a high temptarget is set
         if (!microBolusAllowed) {
             consoleError.add("SMB disabled (!microBolusAllowed)")

@@ -30,13 +30,6 @@
     <string name="openapsama_link_to_preference_json_doc_txt">Attention!\nNormally you do not have to change these values below. Please CLICK HERE and READ the text and make sure you UNDERSTAND it before change any of these values.</string>
     <string name="openapsama_link_to_preference_json_doc" translatable="false">http://openaps.readthedocs.io/en/latest/docs/walkthrough/phase-3/beyond-low-glucose-suspend.html</string>
 
-    <string name="enableSMB_EvenOn_OddOff">Enable alternative activation of SMB depending on TempTarget</string>
-    <string name="key_enableSMB_EvenOn_OddOff" translatable="false">Enable alternative activation of SMB</string>
-    <string name="enableSMB_EvenOn_OddOff_summary">\nenabled if ...\nTempTarget(mmol/L) has even decimal\nor TempTarget(mg/dL) is even number\n\ndisabled otherwise</string>
-    <string name="enableSMB_EvenOn_OddOff_always">Enable alternative activation of SMB depending on profile target</string>
-    <string name="key_enableSMB_EvenOn_OddOff_always" translatable="false">Enable alternative activation of SMB always</string>
-    <string name="enableSMB_EvenOn_OddOff_always_summary">\nenabled if no TempTarget set and ...\nprofile target(mmol/L) has even decimal\nor profile target(mg/dL) is even number\n\ndisabled otherwise</string>
-
     <string name="increasing_max_basal">Increasing max basal value because setting is lower than your max basal in profile</string>
     <string name="max_basal_multiplier">max basal multiplier</string>
     <string name="max_daily_basal_multiplier">max daily basal multiplier</string>
